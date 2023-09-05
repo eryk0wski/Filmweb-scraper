@@ -2,3 +2,9 @@
 .vs
 .__pycache__
 .bin
+bin/data_handler.py
+bin/filmweb_scrape2.ipynb
+bin/Filmweb_scraper.ipynb
+bin/filmweb_vod.ipynb
+bin/scroller.py
+bin/Untitled.ipynb
