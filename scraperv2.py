@@ -17,14 +17,17 @@ def scrolling():
                 url = int(url.split('/')[-2])
                 
                
-
+                actors = []
                 genres = []
                 for genre in range(len(json_file['genres'])):
                     genres.append(json_file['genres'][genre]['name']['text'])
 
+                for actor in range(len(json_file['mainCast'])):
+                    actors.append(json_file['mainCast'][actor]['name'])
+
 
                 columns = [url,json_file['year'], json_file['entityName'],json_file['description']['synopsis'],
-                               json_file['description']['sourceType'],json_file['originalTitle']['title'],genres,json_file['plotOrDescriptionSynopsis']]
+                               json_file['description']['sourceType'],json_file['originalTitle']['title'],genres,actors,json_file['plotOrDescriptionSynopsis']]
                 df.loc[len(df)] = columns
             if "rating" in response.url:
                 json_file = response.json()
@@ -56,7 +59,7 @@ def scrolling():
             {"width":1280, "height": 1080}
         )
         rating = pd.DataFrame(columns = ['url','count','rating','want_to_see'])
-        df = pd.DataFrame(columns = ['url','year','entity_name','summary','source_type', 'original_title','genre', 'plot_describtion'])
+        df = pd.DataFrame(columns = ['url','year','entity_name','summary','source_type', 'original_title','genres','actors', 'plot_describtion'])
         page.on("response", lambda response: check_json(response))
         #add filmweb url with your searching 
         page.goto(pageURL)
