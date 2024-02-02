@@ -5,7 +5,7 @@ import json
 
 
 pageURL = "https://www.filmweb.pl/films/search"
-iterations = 20
+iterations = 5
 
 def scrolling():
     def check_json(response):
@@ -68,12 +68,14 @@ def scrolling():
 
         page.wait_for_load_state("networkidle")
 
-        for i in range(iterations):
-
-            page.mouse.wheel(0, 7000)
-            print("Scrolling")
-            time.sleep(1)
-            #if bottom_header:
+        try:
+            for i in range(iterations):
+                page.mouse.wheel(0, 7000)
+                print(i+1, "Scrolling")
+                time.sleep(1)
+                #if bottom_header:
+        except KeyboardInterrupt:
+            pass
 
 
 
